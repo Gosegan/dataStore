@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8" />
+ <title>SaludaME</title>
+ </head>
+ <body>
+    <h1 style="color:blue">Check yor skills and enter your name!</h1>
+    <p>
+        Enter:
+        <a href="{{ login_logout_url }}">
+            {% if usr %}Logout{% else %}Login{% endif %}
+        </a> <br>
+        Date/hour: {{ fecha }} / {{ hora }}
+    </p>
+    <form id="frmEco" method="POST" action="/do">
+        <input type="text" name="edEco" placeholder="Your name">
+        <input type="submit" value="Submit">
+     </form>
+    <ul id="ulListaPersonas">
+        {% for person in people %}
+        <li>{{ "%s %s (%d) "|format(person.name, person.surname, person.age) }}</li>
+        {% endfor %}
+    </ul>
+    <form id="frmDyn" method="POST" action="/employee">
+        <h3>Inputs in order: Name, Surname, Age</h3>
+        <div id="divMainFrmData">
+            <input class="dataInput" id="input0" name="input0"
+                   type="text" placeholder="Add text here..." />
+        </div>
+        <p>
+        <input type="button" value="+" onclick="createMoreInputs()" />
+        <input type="submit" value="Enviar" />
+        </p>
+    </form>
+
+    <script>
+        function createMoreInputs()
+        {
+            const divMainFrmData = document.getElementById( "divMainFrmData" );
+            const inputText = document.createElement( "input" );
+            const inputs = document.getElementsByClassName( "dataInput" );
+
+            inputText.setAttribute('class', 'dataInput')
+            inputText.name = inputText.id = "input" + inputs.length;
+            inputText.type = "text";
+            inputText.placeholder = "Add text here...";
+
+            divMainFrmData.appendChild( document.createElement( "p" ) );
+            divMainFrmData.appendChild( inputText );
+        }
+    </script>
+ </body>
+</html>

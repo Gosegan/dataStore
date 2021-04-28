@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco</title>
+</head>
+<body>
+    <h1>Title of request</h1>
+    <h2>{{ eco }}</h2>
+    <p>
+        <ul>
+            {% for letra in lista %}
+                <li>{{ letra }}</li>
+            {% else %}
+                <li> Vacia. </li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>
+        <h2>Your posts!</h2>
+        <ul>
+            {% for eco in lista_ecos %}
+                <li>{{ eco.author }} {{ eco.hours }}: {{ eco.text }}</li>
+            {% else %}
+                <li>No hay ecos.</li>
+            {% endfor %}
+        </ul>
+    </p>
+</body>
+</html>
